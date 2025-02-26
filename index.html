@@ -1,285 +1,245 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>숙소 가는 길 안내</title>
-  <!-- 구글 폰트 (Nanum Gothic) 사용: 인터넷 연결 필요 -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
-
-  <style>
-    /* 전체 바디 설정 */
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #FFF7F0; /* 따뜻한 톤의 배경색 */
-      font-family: 'Nanum Gothic', sans-serif;
-      color: #333;
-    }
-
-    /* 헤더 스타일 */
-    header {
-      background: linear-gradient(135deg, #FFDDC9 0%, #FFD2AF 100%);
-      padding: 40px 20px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2em;
-      color: #5D4037;
-    }
-    header p {
-      margin-top: 10px;
-      font-size: 1em;
-      color: #6D4C41;
-    }
-
-    /* 메인 컨테이너 */
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    /* 각 단계(카드) 스타일 */
-    .step {
-      background-color: #FFFFFF;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      margin-bottom: 30px;
-      overflow: hidden;
-    }
-    .step-header {
-      background-color: #FCEFE3;
-      padding: 15px 20px;
-      border-bottom: 1px solid #F0D9C5;
-    }
-    .step-header h2 {
-      margin: 0;
-      font-size: 1.3em;
-      color: #8D4E31;
-    }
-    .step-body {
-      padding: 20px;
-    }
-    .step-body p {
-      margin: 0;
-      line-height: 1.6;
-    }
-
-    /* 이미지 컨테이너 */
-    .image-container {
-      margin-top: 15px;
-      background-color: #FFF;
-      border-radius: 6px;
-      overflow: hidden;
-    }
-    .image-container img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .caption {
-      font-size: 0.9em;
-      color: #666;
-      padding: 8px 12px;
-      background-color: #FAF5F0;
-    }
-
-    /* 푸터 */
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      color: #6D4C41;
-      font-size: 0.9em;
-      background-color: #FFF3E9;
-      margin-top: 40px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>728호 숙소 찾아오는 길</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        
+        body {
+            background-color: #f9f5f0;
+            color: #5a4a42;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+            border-bottom: 2px solid #e8d5c4;
+        }
+        
+        h1 {
+            color: #be8c63;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #a47551;
+            font-size: 1.2rem;
+        }
+        
+        .guide-step {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 40px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .guide-step:hover {
+            transform: translateY(-5px);
+        }
+        
+        .step-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .step-content {
+            padding: 20px;
+        }
+        
+        .step-number {
+            display: inline-block;
+            background-color: #be8c63;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .step-description {
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px 0;
+            border-top: 2px solid #e8d5c4;
+            color: #a47551;
+        }
+        
+        .contact-info {
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .highlight {
+            color: #be8c63;
+            font-weight: bold;
+        }
+        
+        /* 모바일 반응형 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .step-description {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <header>
-    <h1>중구 숙소 가는 길 안내</h1>
-    <p>처음 방문하시는 분도 쉽게 찾아오실 수 있도록 사진과 함께 안내드립니다.</p>
-  </header>
-
-  <div class="container">
-
-    <!-- STEP 1 -->
-    <div class="step">
-      <div class="step-header">
-        <h2>STEP 1: 건물 외벽 간판 확인</h2>
-      </div>
-      <div class="step-body">
-        <p>
-          지하철 남포역에서 내려 7번 출구로 나오시면, 약 2분 도보 거리에 이 건물이 보입니다.
-          아래 사진처럼 간판이 여러 개 달려 있으니, 찾기 쉬우실 거예요.
-        </p>
-        <div class="image-container">
-          <img src="images/guide_1.jpg" alt="건물 외벽 간판">
-          <div class="caption">[사진 설명] 건물 외벽에 여러 간판이 붙어 있는 모습</div>
+    <div class="container">
+        <header>
+            <h1>728호 숙소 찾아오는 길</h1>
+            <p class="subtitle">안녕하세요! 저희 숙소에 오신 것을 환영합니다.</p>
+        </header>
+        
+        <div class="guide-step">
+            <img src="images/guide_1.jpg" alt="남포역 7번 출구" class="step-image">
+            <div class="step-content">
+                <span class="step-number">1</span>
+                <span class="step-description"><span class="highlight">남포역 7번 출구</span>에서 나오세요.</span>
+            </div>
         </div>
-      </div>
-    </div>
-
-    <!-- STEP 2 -->
-    <div class="step">
-      <div class="step-header">
-        <h2>STEP 2: 건물 전경</h2>
-      </div>
-      <div class="step-body">
-        <p>
-          조금 떨어진 곳에서 보면 이런 모습이에요. 건너편에서 보시면 쉽게 식별 가능하니 참고해주세요.
-        </p>
-        <div class="image-container">
-          <img src="images/guide_2.jpg" alt="건물 전경">
-          <div class="caption">[사진 설명] 건물을 멀리서 본 전경</div>
+        
+        <div class="guide-step">
+            <img src="images/guide_2.jpg" alt="건물 전경" class="step-image">
+            <div class="step-content">
+                <span class="step-number">2</span>
+                <span class="step-description">나와서 고개를 <span class="highlight">우측으로 돌리면</span> 커피빈이 보이고, 그 옆에 보이는 건물입니다.</span>
+            </div>
         </div>
-      </div>
-    </div>
-
-    <!-- STEP 3 -->
-    <div class="step">
-      <div class="step-header">
-        <h2>STEP 3: 1층 로비 쪽 이동</h2>
-      </div>
-      <div class="step-body">
-        <p>
-          건물 입구로 들어오시면, 1층 로비가 이렇게 생겼습니다.
-          사진처럼 엘리베이터 표지판을 찾아보세요.
-        </p>
-        <div class="image-container">
-          <img src="images/guide_3.jpg" alt="1층 로비">
-          <div class="caption">[사진 설명] 건물 1층 로비 전경</div>
+        
+        <div class="guide-step">
+            <img src="images/guide_3.jpg" alt="건물 가까운 전경" class="step-image">
+            <div class="step-content">
+                <span class="step-number">3</span>
+                <span class="step-description">건물 입구로 가까이 오세요.</span>
+            </div>
         </div>
-      </div>
-    </div>
-
-    <!-- STEP 4 -->
-    <div class="step">
-      <div class="step-header">
-        <h2>STEP 4: 엘리베이터 방향</h2>
-      </div>
-      <div class="step-body">
-        <p>
-          로비에서 안내판을 따라 가시면 엘리베이터가 보입니다.
-          3층(또는 해당 층)을 누르고 올라가시면 돼요.
-        </p>
-        <div class="image-container">
-          <img src="images/guide_4.jpg" alt="엘리베이터 위치 안내">
-          <div class="caption">[사진 설명] 엘리베이터 방향을 표시하는 표지판</div>
+        
+        <div class="guide-step">
+            <img src="images/guide_4.jpg" alt="공동현관 비밀번호 키" class="step-image">
+            <div class="step-content">
+                <span class="step-number">4</span>
+                <span class="step-description"><span class="highlight">비밀번호를 누르고</span> 안으로 들어가세요.</span>
+            </div>
         </div>
-      </div>
-    </div>
-
-    <!-- STEP 5 -->
-    <div class="step">
-      <div class="step-header">
-        <h2>STEP 5: 도어락 확인</h2>
-      </div>
-      <div class="step-body">
-        <p>
-          해당 층에서 엘리베이터를 내리시면, 사진처럼 복도를 따라오다 보면 숙소 문 앞에 도어락이 있습니다.
-          예약 시 안내해드린 비밀번호를 입력해주시면 돼요.
-        </p>
-        <div class="image-container">
-          <img src="images/guide_5.jpg" alt="도어락">
-          <div class="caption">[사진 설명] 출입문 도어락 모습</div>
+        
+        <div class="guide-step">
+            <img src="images/guide_5.jpg" alt="엘레베이터" class="step-image">
+            <div class="step-content">
+                <span class="step-number">5</span>
+                <span class="step-description"><span class="highlight">엘레베이터를 타고 6층</span>으로 올라가세요.</span>
+            </div>
         </div>
-      </div>
-    </div>
-
-    <!-- STEP 6 -->
-    <div class="step">
-      <div class="step-header">
-        <h2>STEP 6: 복도 내 편의 시설</h2>
-      </div>
-      <div class="step-body">
-        <p>
-          복도 한쪽에는 이런 식으로 물건을 놓는 선반(또는 신발장)이 있습니다.
-          간단한 물건 보관 시 참고해주세요.
-        </p>
-        <div class="image-container">
-          <img src="images/guide_6.jpg" alt="복도 선반">
-          <div class="caption">[사진 설명] 복도 쪽 선반 모습</div>
+        
+        <div class="guide-step">
+            <img src="images/guide_6.jpg" alt="엘레베이터 내리면 보이는 건물내부" class="step-image">
+            <div class="step-content">
+                <span class="step-number">6</span>
+                <span class="step-description">엘레베이터에서 내리면 이렇게 보입니다.</span>
+            </div>
         </div>
-      </div>
-    </div>
-
-    <!-- STEP 7 -->
-    <div class="step">
-      <div class="step-header">
-        <h2>STEP 7: 복도 전경 (1)</h2>
-      </div>
-      <div class="step-body">
-        <p>
-          엘리베이터에서 나와 복도를 쭉 걸어가시면, 사진처럼 시야가 확보됩니다.
-          혹시 헷갈리시면 호실 번호를 다시 한 번 확인해주세요.
-        </p>
-        <div class="image-container">
-          <img src="images/guide_7.jpg" alt="복도 전경">
-          <div class="caption">[사진 설명] 3층 복도의 모습</div>
+        
+        <div class="guide-step">
+            <img src="images/guide_7.jpg" alt="복도 모습" class="step-image">
+            <div class="step-content">
+                <span class="step-number">7</span>
+                <span class="step-description"><span class="highlight">왼쪽으로 가보세요.</span> 이런 복도가 보입니다.</span>
+            </div>
         </div>
-      </div>
-    </div>
-
-    <!-- STEP 8 -->
-    <div class="step">
-      <div class="step-header">
-        <h2>STEP 8: 복도 전경 (2)</h2>
-      </div>
-      <div class="step-body">
-        <p>
-          반대편 각도에서 본 복도 모습입니다. 다른 호실과 혼동되지 않도록 유의해주세요.
-        </p>
-        <div class="image-container">
-          <img src="images/guide_8.jpg" alt="복도 다른 각도">
-          <div class="caption">[사진 설명] 복도를 다른 각도에서 본 모습</div>
+        
+        <div class="guide-step">
+            <img src="images/guide_8.jpg" alt="다시 올라갈 건물 모습" class="step-image">
+            <div class="step-content">
+                <span class="step-number">8</span>
+                <span class="step-description">이 건물을 따라 올라가세요.</span>
+            </div>
         </div>
-      </div>
-    </div>
-
-    <!-- STEP 9 -->
-    <div class="step">
-      <div class="step-header">
-        <h2>STEP 9: 복도 전경 (3)</h2>
-      </div>
-      <div class="step-body">
-        <p>
-          복도 중앙 부분입니다. 3층 전체가 비슷한 구조이니,
-          문 앞 번호표를 보고 확인하는 것이 가장 정확해요.
-        </p>
-        <div class="image-container">
-          <img src="images/guide_9.jpg" alt="복도 중앙">
-          <div class="caption">[사진 설명] 복도 중앙 부분</div>
+        
+        <div class="guide-step">
+            <img src="images/guide_9.jpg" alt="계단 모습" class="step-image">
+            <div class="step-content">
+                <span class="step-number">9</span>
+                <span class="step-description">계단을 따라 <span class="highlight">한 층 더 올라가세요.</span></span>
+            </div>
         </div>
-      </div>
-    </div>
-
-    <!-- STEP 10 -->
-    <div class="step">
-      <div class="step-header">
-        <h2>STEP 10: 엘리베이터 내부</h2>
-      </div>
-      <div class="step-body">
-        <p>
-          엘리베이터 내부는 이렇게 생겼습니다.  
-          버튼을 눌러 3층(또는 해당 층)으로 이동하시면 돼요.
-        </p>
-        <div class="image-container">
-          <img src="images/guide_10.jpg" alt="엘리베이터 내부">
-          <div class="caption">[사진 설명] 엘리베이터 내부 모습</div>
+        
+        <div class="guide-step">
+            <img src="images/guide_10.jpg" alt="728호 문" class="step-image">
+            <div class="step-content">
+                <span class="step-number">10</span>
+                <span class="step-description">도착했습니다! <span class="highlight">728호</span>가 여러분의 숙소입니다.</span>
+            </div>
         </div>
-      </div>
+        
+        <footer>
+            <p>즐거운 시간 보내세요!</p>
+            <div class="contact-info">
+                <p>문의사항이 있으시면 언제든 연락주세요.</p>
+                <p>연락처: 010-XXXX-XXXX</p>
+            </div>
+        </footer>
     </div>
-
-  </div><!-- /.container -->
-
-  <footer>
-    <p>문의: 010-XXXX-XXXX (카톡 ID: 예시)</p>
-    <p>최종 업데이트: 2025-02-27</p>
-  </footer>
-
+    
+    <script>
+        // 이미지가 로드되지 않았을 때 대체 텍스트 표시
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('.step-image');
+            
+            images.forEach(img => {
+                img.addEventListener('error', function() {
+                    this.style.display = 'none';
+                    this.parentNode.querySelector('.step-content').style.paddingTop = '20px';
+                    
+                    const errorMsg = document.createElement('p');
+                    errorMsg.textContent = '이미지를 불러올 수 없습니다.';
+                    errorMsg.style.color = '#be8c63';
+                    errorMsg.style.fontStyle = 'italic';
+                    errorMsg.style.padding = '20px';
+                    errorMsg.style.textAlign = 'center';
+                    
+                    this.parentNode.insertBefore(errorMsg, this.parentNode.firstChild);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
