@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>728호 숙소 찾아오는 길</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,216 +13,379 @@
             font-family: 'Noto Sans KR', sans-serif;
         }
         
+        :root {
+            --primary-color: #3182F6;
+            --secondary-color: #F4F6FF;
+            --highlight-color: #3182F6;
+            --text-color: #191F28;
+            --sub-text-color: #8B95A1;
+            --border-radius: 20px;
+            --box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06);
+        }
+        
         body {
-            background-color: #f9f5f0;
-            color: #5a4a42;
+            background-color: #F8F9FA;
+            color: var(--text-color);
             line-height: 1.6;
+            padding-bottom: 40px;
         }
         
         .container {
-            max-width: 800px;
+            max-width: 640px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 16px;
         }
         
         header {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 20px 0;
-            border-bottom: 2px solid #e8d5c4;
+            margin: 24px 0 32px;
+            padding: 0 16px;
         }
         
         h1 {
-            color: #be8c63;
+            color: var(--text-color);
             font-size: 2rem;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            word-break: keep-all;
         }
         
         .subtitle {
-            color: #a47551;
-            font-size: 1.2rem;
+            color: var(--sub-text-color);
+            font-size: 1rem;
+            font-weight: 400;
+        }
+        
+        .guide-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 40px;
         }
         
         .guide-step {
             display: flex;
             flex-direction: column;
-            margin-bottom: 40px;
             background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: var(--border-radius);
             overflow: hidden;
-            transition: transform 0.3s ease;
+            box-shadow: var(--box-shadow);
         }
         
-        .guide-step:hover {
-            transform: translateY(-5px);
+        .step-image-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 230px;
+            background-color: #F2F4F6;
         }
         
         .step-image {
             width: 100%;
-            max-width: 600px; /* 이미지 최대 너비 제한 */
-            height: auto; /* 비율 유지 */
-            object-fit: contain; /* 이미지 전체 표시 (자르지 않음) */
-            margin: 0 auto; /* 중앙 정렬 */
-            display: block;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
         }
         
         .step-content {
             padding: 20px;
+            display: flex;
+            align-items: flex-start;
         }
         
         .step-number {
-            display: inline-block;
-            background-color: #be8c63;
-            color: white;
-            width: 30px;
-            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 36px;
+            height: 36px;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
             border-radius: 50%;
-            text-align: center;
-            line-height: 30px;
-            margin-right: 10px;
-            font-weight: bold;
+            font-weight: 700;
+            margin-right: 16px;
+            flex-shrink: 0;
+            font-size: 1.1rem;
         }
         
         .step-description {
-            font-size: 1.1rem;
-            margin-top: 10px;
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px 0;
-            border-top: 2px solid #e8d5c4;
-            color: #a47551;
-        }
-        
-        .contact-info {
-            margin-top: 20px;
-            font-size: 0.9rem;
+            font-size: 1.05rem;
+            color: var(--text-color);
+            font-weight: 400;
+            line-height: 1.5;
         }
         
         .highlight {
-            color: #be8c63;
-            font-weight: bold;
+            color: var(--highlight-color);
+            font-weight: 700;
         }
         
-        /* 모바일 반응형 */
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background-color: rgba(242, 244, 246, 0.8);
+            z-index: 1000;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0;
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+            transition: width 0.1s ease;
+        }
+        
+        .footer {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 24px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            margin-top: 40px;
+        }
+        
+        .footer-title {
+            font-size: 1.4rem;
+            color: var(--text-color);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .emoji {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+        
+        .contact-info {
+            margin-top: 16px;
+            color: var(--sub-text-color);
+            font-size: 0.95rem;
+        }
+        
+        .contact-info p {
+            margin-bottom: 4px;
+        }
+        
+        .contact-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            margin-top: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(49, 130, 246, 0.3);
+            transition: all 0.2s ease;
+        }
+        
+        .contact-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(49, 130, 246, 0.4);
+        }
+        
+        .top-bar {
+            position: sticky;
+            top: 6px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 14px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            z-index: 100;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .location-dot {
+            width: 12px;
+            height: 12px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            margin-right: 12px;
+            position: relative;
+        }
+        
+        .location-dot::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgba(49, 130, 246, 0.2);
+        }
+        
+        .location-text {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        
+        @media (max-width: 640px) {
             h1 {
-                font-size: 1.5rem;
+                font-size: 1.7rem;
             }
             
-            .subtitle {
-                font-size: 1rem;
+            .step-image-container {
+                height: 200px;
+            }
+            
+            .step-content {
+                padding: 16px;
             }
             
             .step-description {
+                font-size: 0.95rem;
+            }
+            
+            .step-number {
+                width: 32px;
+                height: 32px;
                 font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    
     <div class="container">
         <header>
             <h1>728호 숙소 찾아오는 길</h1>
-            <p class="subtitle">안녕하세요! 저희 숙소에 오신 것을 환영합니다.</p>
+            <p class="subtitle">안녕하세요! 쉽고 빠르게 찾아오실 수 있도록 안내해 드릴게요 😊</p>
         </header>
         
-        <div class="guide-step">
-            <img src="guide_1.JPG" alt="남포역 7번 출구" class="step-image">
-            <div class="step-content">
-                <span class="step-number">1</span>
-                <span class="step-description"><span class="highlight">남포역 7번 출구</span>에서 나오세요.</span>
+        <div class="top-bar">
+            <div class="location-dot"></div>
+            <div class="location-text">부산 중구 남포동</div>
+        </div>
+        
+        <div class="guide-steps">
+            <div class="guide-step">
+                <div class="step-image-container">
+                    <img src="guide_1.JPG" alt="남포역 7번 출구" class="step-image">
+                </div>
+                <div class="step-content">
+                    <div class="step-number">1</div>
+                    <div class="step-description"><span class="highlight">남포역 7번 출구</span>에서 나오세요.</div>
+                </div>
+            </div>
+            
+            <div class="guide-step">
+                <div class="step-image-container">
+                    <img src="guide_2.JPG" alt="건물 전경" class="step-image">
+                </div>
+                <div class="step-content">
+                    <div class="step-number">2</div>
+                    <div class="step-description">나와서 고개를 <span class="highlight">우측으로 돌리면</span> 커피빈이 보이고, 그 옆에 보이는 건물입니다.</div>
+                </div>
+            </div>
+            
+            <div class="guide-step">
+                <div class="step-image-container">
+                    <img src="guide_3.JPG" alt="건물 가까운 전경" class="step-image">
+                </div>
+                <div class="step-content">
+                    <div class="step-number">3</div>
+                    <div class="step-description">건물 입구로 가까이 오세요.</div>
+                </div>
+            </div>
+            
+            <div class="guide-step">
+                <div class="step-image-container">
+                    <img src="guide_4.JPG" alt="공동현관 비밀번호 키" class="step-image">
+                </div>
+                <div class="step-content">
+                    <div class="step-number">4</div>
+                    <div class="step-description"><span class="highlight">비밀번호를 누르고</span> 안으로 들어가세요.</div>
+                </div>
+            </div>
+            
+            <div class="guide-step">
+                <div class="step-image-container">
+                    <img src="guide_5.JPG" alt="엘레베이터" class="step-image">
+                </div>
+                <div class="step-content">
+                    <div class="step-number">5</div>
+                    <div class="step-description"><span class="highlight">엘레베이터를 타고 6층</span>으로 올라가세요.</div>
+                </div>
+            </div>
+            
+            <div class="guide-step">
+                <div class="step-image-container">
+                    <img src="guide_6.JPG" alt="엘레베이터 내리면 보이는 건물내부" class="step-image">
+                </div>
+                <div class="step-content">
+                    <div class="step-number">6</div>
+                    <div class="step-description">엘레베이터에서 내리면 이렇게 보입니다.</div>
+                </div>
+            </div>
+            
+            <div class="guide-step">
+                <div class="step-image-container">
+                    <img src="guide_7.JPG" alt="복도 모습" class="step-image">
+                </div>
+                <div class="step-content">
+                    <div class="step-number">7</div>
+                    <div class="step-description"><span class="highlight">왼쪽으로 가보세요.</span> 이런 복도가 보입니다.</div>
+                </div>
+            </div>
+            
+            <div class="guide-step">
+                <div class="step-image-container">
+                    <img src="guide_8.JPG" alt="다시 올라갈 건물 모습" class="step-image">
+                </div>
+                <div class="step-content">
+                    <div class="step-number">8</div>
+                    <div class="step-description">이 건물을 따라 올라가세요.</div>
+                </div>
+            </div>
+            
+            <div class="guide-step">
+                <div class="step-image-container">
+                    <img src="guide_9.JPG" alt="계단 모습" class="step-image">
+                </div>
+                <div class="step-content">
+                    <div class="step-number">9</div>
+                    <div class="step-description">계단을 따라 <span class="highlight">한 층 더 올라가세요.</span></div>
+                </div>
+            </div>
+            
+            <div class="guide-step">
+                <div class="step-image-container">
+                    <img src="guide_10.JPG" alt="728호 문" class="step-image">
+                </div>
+                <div class="step-content">
+                    <div class="step-number">10</div>
+                    <div class="step-description">도착했습니다! <span class="highlight">728호</span>가 여러분의 숙소입니다.</div>
+                </div>
             </div>
         </div>
         
-        <div class="guide-step">
-            <img src="guide_2.JPG" alt="건물 전경" class="step-image">
-            <div class="step-content">
-                <span class="step-number">2</span>
-                <span class="step-description">나와서 고개를 <span class="highlight">우측으로 돌리면</span> 커피빈이 보이고, 그 옆에 보이는 건물입니다.</span>
-            </div>
-        </div>
-        
-        <div class="guide-step">
-            <img src="guide_3.JPG" alt="건물 가까운 전경" class="step-image">
-            <div class="step-content">
-                <span class="step-number">3</span>
-                <span class="step-description">건물 입구로 가까이 오세요.</span>
-            </div>
-        </div>
-        
-        <div class="guide-step">
-            <img src="guide_4.JPG" alt="공동현관 비밀번호 키" class="step-image">
-            <div class="step-content">
-                <span class="step-number">4</span>
-                <span class="step-description"><span class="highlight">비밀번호를 누르고</span> 안으로 들어가세요.</span>
-            </div>
-        </div>
-        
-        <div class="guide-step">
-            <img src="guide_5.JPG" alt="엘레베이터" class="step-image">
-            <div class="step-content">
-                <span class="step-number">5</span>
-                <span class="step-description"><span class="highlight">엘레베이터를 타고 6층</span>으로 올라가세요.</span>
-            </div>
-        </div>
-        
-        <div class="guide-step">
-            <img src="guide_6.JPG" alt="엘레베이터 내리면 보이는 건물내부" class="step-image">
-            <div class="step-content">
-                <span class="step-number">6</span>
-                <span class="step-description">엘레베이터에서 내리면 이렇게 보입니다.</span>
-            </div>
-        </div>
-        
-        <div class="guide-step">
-            <img src="guide_7.JPG" alt="복도 모습" class="step-image">
-            <div class="step-content">
-                <span class="step-number">7</span>
-                <span class="step-description"><span class="highlight">왼쪽으로 가보세요.</span> 이런 복도가 보입니다.</span>
-            </div>
-        </div>
-        
-        <div class="guide-step">
-            <img src="guide_8.JPG" alt="다시 올라갈 건물 모습" class="step-image">
-            <div class="step-content">
-                <span class="step-number">8</span>
-                <span class="step-description">이 건물을 따라 올라가세요.</span>
-            </div>
-        </div>
-        
-        <div class="guide-step">
-            <img src="guide_9.JPG" alt="계단 모습" class="step-image">
-            <div class="step-content">
-                <span class="step-number">9</span>
-                <span class="step-description">계단을 따라 <span class="highlight">한 층 더 올라가세요.</span></span>
-            </div>
-        </div>
-        
-        <div class="guide-step">
-            <img src="guide_10.JPG" alt="728호 문" class="step-image">
-            <div class="step-content">
-                <span class="step-number">10</span>
-                <span class="step-description">도착했습니다! <span class="highlight">728호</span>가 여러분의 숙소입니다.</span>
-            </div>
-        </div>
-        
-        <footer>
+        <div class="footer">
+            <span class="emoji">🎉</span>
+            <div class="footer-title">도착하셨네요!</div>
             <p>즐거운 시간 보내세요!</p>
-            <div class="contact-info">
-                <p>문의사항이 있으시면 언제든 연락주세요.</p>
-            </div>
-        </footer>
+        </div>
     </div>
     
     <script>
+        // 스크롤에 따른 프로그레스 바 업데이트
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.body.offsetHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        });
+        
         // 이미지가 로드되지 않았을 때 대체 텍스트 표시
         document.addEventListener('DOMContentLoaded', function() {
             const images = document.querySelectorAll('.step-image');
@@ -229,16 +393,17 @@
             images.forEach(img => {
                 img.addEventListener('error', function() {
                     this.style.display = 'none';
-                    this.parentNode.querySelector('.step-content').style.paddingTop = '20px';
-                    
-                    const errorMsg = document.createElement('p');
-                    errorMsg.textContent = '이미지를 불러올 수 없습니다.';
-                    errorMsg.style.color = '#be8c63';
-                    errorMsg.style.fontStyle = 'italic';
+                    const errorMsg = document.createElement('div');
+                    errorMsg.textContent = '이미지를 불러올 수 없어요 😢';
                     errorMsg.style.padding = '20px';
                     errorMsg.style.textAlign = 'center';
-                    
-                    this.parentNode.insertBefore(errorMsg, this.parentNode.firstChild);
+                    errorMsg.style.color = '#8B95A1';
+                    errorMsg.style.height = '100%';
+                    errorMsg.style.display = 'flex';
+                    errorMsg.style.alignItems = 'center';
+                    errorMsg.style.justifyContent = 'center';
+                    errorMsg.style.fontWeight = '500';
+                    this.parentNode.appendChild(errorMsg);
                 });
             });
         });
