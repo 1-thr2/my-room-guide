@@ -59,15 +59,11 @@
         
         .step-image {
             width: 100%;
-            max-height: 400px; /* 이미지 최대 높이 제한 */
-            object-fit: cover; /* 비율 유지하면서 크기 조절 */
+            max-width: 600px; /* 이미지 최대 너비 제한 */
+            height: auto; /* 비율 유지 */
+            object-fit: contain; /* 이미지 전체 표시 (자르지 않음) */
+            margin: 0 auto; /* 중앙 정렬 */
             display: block;
-        }
-        
-        /* 10번 이미지만 특별히 조절 */
-        .guide-step:nth-child(10) .step-image {
-            max-height: 350px;
-            object-position: center; /* 중앙 부분 표시 */
         }
         
         .step-content {
@@ -138,7 +134,7 @@
         </header>
         
         <div class="guide-step">
-            <img src="images/guide_1.jpg" alt="남포역 7번 출구" class="step-image">
+            <img src="guide_1.JPG" alt="남포역 7번 출구" class="step-image">
             <div class="step-content">
                 <span class="step-number">1</span>
                 <span class="step-description"><span class="highlight">남포역 7번 출구</span>에서 나오세요.</span>
@@ -146,7 +142,7 @@
         </div>
         
         <div class="guide-step">
-            <img src="images/guide_2.jpg" alt="건물 전경" class="step-image">
+            <img src="guide_2.JPG" alt="건물 전경" class="step-image">
             <div class="step-content">
                 <span class="step-number">2</span>
                 <span class="step-description">나와서 고개를 <span class="highlight">우측으로 돌리면</span> 커피빈이 보이고, 그 옆에 보이는 건물입니다.</span>
@@ -154,7 +150,7 @@
         </div>
         
         <div class="guide-step">
-            <img src="images/guide_3.jpg" alt="건물 가까운 전경" class="step-image">
+            <img src="guide_3.JPG" alt="건물 가까운 전경" class="step-image">
             <div class="step-content">
                 <span class="step-number">3</span>
                 <span class="step-description">건물 입구로 가까이 오세요.</span>
@@ -162,7 +158,7 @@
         </div>
         
         <div class="guide-step">
-            <img src="images/guide_4.jpg" alt="공동현관 비밀번호 키" class="step-image">
+            <img src="guide_4.JPG" alt="공동현관 비밀번호 키" class="step-image">
             <div class="step-content">
                 <span class="step-number">4</span>
                 <span class="step-description"><span class="highlight">비밀번호를 누르고</span> 안으로 들어가세요.</span>
@@ -170,7 +166,7 @@
         </div>
         
         <div class="guide-step">
-            <img src="images/guide_5.jpg" alt="엘레베이터" class="step-image">
+            <img src="guide_5.JPG" alt="엘레베이터" class="step-image">
             <div class="step-content">
                 <span class="step-number">5</span>
                 <span class="step-description"><span class="highlight">엘레베이터를 타고 6층</span>으로 올라가세요.</span>
@@ -178,7 +174,7 @@
         </div>
         
         <div class="guide-step">
-            <img src="images/guide_6.jpg" alt="엘레베이터 내리면 보이는 건물내부" class="step-image">
+            <img src="guide_6.JPG" alt="엘레베이터 내리면 보이는 건물내부" class="step-image">
             <div class="step-content">
                 <span class="step-number">6</span>
                 <span class="step-description">엘레베이터에서 내리면 이렇게 보입니다.</span>
@@ -186,7 +182,7 @@
         </div>
         
         <div class="guide-step">
-            <img src="images/guide_7.jpg" alt="복도 모습" class="step-image">
+            <img src="guide_7.JPG" alt="복도 모습" class="step-image">
             <div class="step-content">
                 <span class="step-number">7</span>
                 <span class="step-description"><span class="highlight">왼쪽으로 가보세요.</span> 이런 복도가 보입니다.</span>
@@ -194,7 +190,7 @@
         </div>
         
         <div class="guide-step">
-            <img src="images/guide_8.jpg" alt="다시 올라갈 건물 모습" class="step-image">
+            <img src="guide_8.JPG" alt="다시 올라갈 건물 모습" class="step-image">
             <div class="step-content">
                 <span class="step-number">8</span>
                 <span class="step-description">이 건물을 따라 올라가세요.</span>
@@ -202,7 +198,7 @@
         </div>
         
         <div class="guide-step">
-            <img src="images/guide_9.jpg" alt="계단 모습" class="step-image">
+            <img src="guide_9.JPG" alt="계단 모습" class="step-image">
             <div class="step-content">
                 <span class="step-number">9</span>
                 <span class="step-description">계단을 따라 <span class="highlight">한 층 더 올라가세요.</span></span>
@@ -210,7 +206,7 @@
         </div>
         
         <div class="guide-step">
-            <img src="images/guide_10.jpg" alt="728호 문" class="step-image">
+            <img src="guide_10.JPG" alt="728호 문" class="step-image">
             <div class="step-content">
                 <span class="step-number">10</span>
                 <span class="step-description">도착했습니다! <span class="highlight">728호</span>가 여러분의 숙소입니다.</span>
