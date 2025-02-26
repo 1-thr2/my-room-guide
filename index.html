@@ -59,8 +59,15 @@
         
         .step-image {
             width: 100%;
-            height: auto;
+            max-height: 400px; /* 이미지 최대 높이 제한 */
+            object-fit: cover; /* 비율 유지하면서 크기 조절 */
             display: block;
+        }
+        
+        /* 10번 이미지만 특별히 조절 */
+        .guide-step:nth-child(10) .step-image {
+            max-height: 350px;
+            object-position: center; /* 중앙 부분 표시 */
         }
         
         .step-content {
